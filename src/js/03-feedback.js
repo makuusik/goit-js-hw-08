@@ -27,9 +27,19 @@ function handleFormInput() {
 function handleSubmit(event) {
   event.preventDefault();
 
-  const formData = JSON.parse(localStorage.getItem('feedback-form-state'));
-  console.log('Submitted Data:', formData);
+  const emailValue = emailInput.value.trim();
+  const messageValue = messageInput.value.trim();
 
-  localStorage.removeItem('feedback-form-state');
-  form.reset();
+  if (emailValue === '' || messageValue === '') {
+    alert('Please fill all inputs');
+  } else {
+    const formData = {
+      email: emailValue,
+      message: messageValue,
+    };
+    console.log('Data:', formData);
+
+    localStorage.removeItem('feedback-form-state');
+    form.reset();
+  }
 }
